@@ -9,7 +9,7 @@ from scipy.special import gamma
 from typing import Tuple, Dict, List, Optional, Union, Callable
 import matplotlib.pyplot as plt
 
-class QSynthetic:
+class SyntheticSystems:
     """
     Generate synthetic responses R(t) for 20+ dynamical regimes.
     Each method returns (t, R) and provides .info() for comprehensive guidance.
@@ -17,7 +17,6 @@ class QSynthetic:
     
     # ==================== INFO DECORATOR ====================
     
-    @staticmethod
     def _info(equation: str, 
               param_descriptions: dict,
               examples: list = None,
@@ -716,15 +715,6 @@ class QSynthetic:
         return t_irregular, R_irregular
     
     @staticmethod
-    @_info(
-        equation="",
-        param_descriptions={},
-        examples=[
-            "systems = get_all_system_types()",
-            "for name, data in systems.items(): print(name)"
-        ],
-        notes="Returns dictionary of all available system generators with their info functions."
-    )
     def get_all_system_types() -> Dict:
         """Return dictionary of all available system generators."""
         return {
@@ -787,20 +777,6 @@ class QSynthetic:
         }
     
     @staticmethod
-    @_info(
-        equation="Dataset with multiple system types",
-        param_descriptions={
-            'n_samples': "Number of samples to generate. Default: 100",
-            'add_noise': "Whether to add measurement noise. Default: True",
-            'noise_std': "Standard deviation of added noise. Default: 0.05"
-        },
-        examples=[
-            "dataset = generate_dataset(n_samples=50)",
-            "noiseless = generate_dataset(add_noise=False)",
-            "noisy = generate_dataset(noise_std=0.1)"
-        ],
-        notes="Generate a diverse dataset with multiple system types for testing/validation."
-    )
     def generate_dataset(n_samples: int = 100, 
                         add_noise: bool = True,
                         noise_std: float = 0.05) -> Dict:
